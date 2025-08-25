@@ -6,6 +6,8 @@ on:
 
 jobs:
   build:
+    permissions:
+      contents: write
     strategy:
       matrix:
         include:
@@ -56,7 +58,7 @@ jobs:
         if: matrix.platform == 'macos-latest'
         uses: softprops/action-gh-release@v1
         with:
-          files: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
+          files: src-tauri/target/release/bundle/dmg/*.dmg
 
       - name: Upload Release Asset (Windows)
         if: matrix.platform == 'windows-latest'
