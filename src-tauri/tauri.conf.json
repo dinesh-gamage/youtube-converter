@@ -51,7 +51,11 @@
   "bundle": {
     "active": true,
     "targets": [
-      "dmg"
+      "dmg",
+      "msi",
+      "nsis",
+      "deb",
+      "appimage"
     ],
     "macOS": {
       "frameworks": [],
@@ -60,6 +64,19 @@
       "signingIdentity": null,
       "hardenedRuntime": true,
       "entitlements": null
+    },
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": "",
+      "wix": {
+        "language": "en-US"
+      }
+    },
+    "linux": {
+      "deb": {
+        "depends": []
+      }
     },
     "icon": [
       "icons/32x32.png",
