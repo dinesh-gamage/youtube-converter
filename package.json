@@ -1,0 +1,35 @@
+{
+  "name": "youtube-to-mp3",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "2.7.0",
+    "@tauri-apps/plugin-dialog": "^2.3.3",
+    "@tauri-apps/plugin-opener": "2.5.0",
+    "lucide-react": "^0.263.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.15.0",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.7.0",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.28",
+    "tailwindcss": "^3.3.3",
+    "typescript": "~5.8.3",
+    "vite": "^7.1.3"
+  }
+}
