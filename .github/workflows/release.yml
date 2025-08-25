@@ -1,4 +1,3 @@
-# .github/workflows/release.yml
 name: Release
 
 on:
@@ -24,8 +23,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 23
-          cache: "npm"
+          node-version: 20
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -44,10 +47,10 @@ jobs:
           workspaces: "./src-tauri -> target"
 
       - name: Install frontend dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: npm run tauri build ${{ matrix.args }}
+        run: pnpm run tauri build -- ${{ matrix.args }}
 
       - name: Upload Release Asset (macOS)
         if: matrix.platform == 'macos-latest'
