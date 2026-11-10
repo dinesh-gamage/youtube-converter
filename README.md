@@ -178,5 +178,12 @@ youtube-to-mp3/
   * Tauri, serde (JSON), tokio (async), `std::process::Command` for `yt-dlp`.
 * **External**:
 
-  * `yt-dlp` (must be installed).
-  * `ffmpeg` (for MP3 conversion, thumbnail embedding).
+  * `yt-dlp` and `ffmpeg` (for MP3 conversion, thumbnail embedding) ship inside the app.
+    They are not in git: `./get-binaries.sh macos|linux|windows` fetches them into `src-tauri/binaries`.
+
+## 7. Build and release
+
+* Local: `./get-binaries.sh macos`, then `pnpm tauri dev` or `pnpm tauri build`.
+* Release: bump the version in `package.json`, `src-tauri/tauri.conf.json` and `src-tauri/Cargo.toml`,
+  then push a `v*` tag. `.github/workflows/release.yml` builds macOS (Apple Silicon), Windows and Linux
+  and publishes the GitHub release.

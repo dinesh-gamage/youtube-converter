@@ -138,7 +138,6 @@ const Settings: React.FC<SettingsProps> = ({
                 </h3>
                 <div className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
                     <p>YouTube to MP3 Converter built with Tauri and React</p>
-                    <p>Requires yt-dlp and ffmpeg to be installed on your system</p>
                     <p>Downloads are saved as MP3 files with embedded thumbnails</p>
                 </div>
             </div>

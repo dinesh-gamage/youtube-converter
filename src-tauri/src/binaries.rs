@@ -29,24 +29,25 @@ impl BinaryManager {
         let (source_filename, target_filename) = Self::get_binary_filenames(binary_name);
         let target_path = target_dir.join(&target_filename);
 
-        // Only extract if binary doesn't exist or is outdated
-        if !target_path.exists() {
-            let resource_path = format!("binaries/{}", source_filename);
-            let resource = app_handle
-                .path()
-                .resolve(&resource_path, tauri::path::BaseDirectory::Resource)?;
+        let resource_path = format!("binaries/{}", source_filename);
+        let resource = app_handle
+            .path()
+            .resolve(&resource_path, tauri::path::BaseDirectory::Resource)?;
 
-            if resource.exists() {
-                fs::copy(&resource, &target_path)?;
+        // A different size means an older app version left its copy here
+        // (v0.0.4 shipped 133-byte placeholders), so it is replaced.
+        let size = |p: &PathBuf| fs::metadata(p).map(|m| m.len()).ok();
+        if resource.exists() && size(&target_path) != size(&resource) {
+            let _ = fs::remove_file(&target_path);
+            fs::copy(&resource, &target_path)?;
 
-                // Make executable on Unix systems
-                #[cfg(unix)]
-                {
-                    use std::os::unix::fs::PermissionsExt;
-                    let mut perms = fs::metadata(&target_path)?.permissions();
-                    perms.set_mode(0o755);
-                    fs::set_permissions(&target_path, perms)?;
-                }
+            // Make executable on Unix systems
+            #[cfg(unix)]
+            {
+                use std::os::unix::fs::PermissionsExt;
+                let mut perms = fs::metadata(&target_path)?.permissions();
+                perms.set_mode(0o755);
+                fs::set_permissions(&target_path, perms)?;
             }
         }
 

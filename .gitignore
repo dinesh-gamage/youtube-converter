@@ -23,3 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 src-tauri/target
+# fetched by get-binaries.sh
+src-tauri/binaries

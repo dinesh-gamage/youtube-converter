@@ -16,7 +16,8 @@ const Navigation = () => {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center space-x-8">
-                        <h1 className="text-xl font-bold text-gray-900 dark:text-white">
+                        <h1 className="flex items-center gap-2 text-xl font-bold text-gray-900 dark:text-white">
+                            <img src="/logo.svg" width="28" height="28" alt="" />
                             YouTube to MP3
                         </h1>
 
